@@ -1,6 +1,6 @@
 import { inferAsyncReturnType } from "@trpc/server";
 import { Prisma } from "@prisma/client";
-import { boolean, z } from "zod";
+import {  z } from "zod";
 import {
     createTRPCRouter,
     publicProcedure,
@@ -15,7 +15,7 @@ export const todoRouter = createTRPCRouter({
         .input(
             z.object({
                 limit: z.number().optional(),
-                cursor: z.object({ id: z.string(), createdAt: z.date() }).optional()
+                cursor: z.object({ id: z.string(), createdAt: z.date(),complete: z.boolean() }).optional()
             })
         )
         .query(
@@ -78,11 +78,11 @@ async function getInfiniteTweets({
 }) {
 
 
-
     const data = await ctx.prisma.todo.findMany({
         take: limit + 1,
         cursor: cursor ? { createdAt_id: cursor } : undefined,
-        orderBy: [{ createdAt: "desc" }, { id: "desc" }],
+        orderBy: [{ createdAt: "desc" }, { id: "desc" }, ],
+        
     })
 
     let nextCursor: typeof cursor | undefined
@@ -98,7 +98,8 @@ async function getInfiniteTweets({
             return {
                 id: todo.id,
                 content: todo.content,
-                createdAt: todo.createdAt
+                createdAt: todo.createdAt,
+                complete: todo.complete
             }
         }), nextCursor
     }

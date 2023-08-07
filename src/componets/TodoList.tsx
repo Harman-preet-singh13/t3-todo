@@ -3,27 +3,28 @@ import LoadingSpinner from "./LoadingSpinner"
 import { BsFillTrash3Fill } from "react-icons/bs"
 import IconHoverEffect from "./IconHoverEffect"
 import { api } from "~/utils/api"
-import { useSession } from "next-auth/react"
+
 
 type Todo = {
-    id: string
-    content: string
-    createdAt: Date
-    complete: boolean
+    id: string;
+    content: string;
+    createdAt: Date;
+    complete: boolean | null;
 }
 
 type TodoListProps = {
-    isLoading: boolean
-    isError: boolean
-    hasMore: any
-    fetchNewTodos: () => Promise<unknown>
-    todos?: Todo[]
+    todos?: Todo[];
+    isLoading: boolean;
+    isError: boolean;
+    hasMore: any;
+    fetchNewTodos: () => Promise<unknown>;
 }
 
 const dataTimeFormatter = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', year: '2-digit', month: '2-digit', day: '2-digit' })
 
 export default function TodoList(
-    { todos,
+    {
+        todos,
         isLoading,
         isError,
         hasMore,
@@ -73,11 +74,7 @@ function TodoCard({
             trpcUtils.todo.infiniteFeed.setInfiniteData({}, (oldData) => {
                 if (oldData == null || oldData.pages[0] == null) return
 
-                trpcUtils.todo.infiniteFeed.setInfiniteData({}, (oldData) => {
-                    if (oldData == null || oldData.pages[0] == null) return
-
                     const DeletingTodosFromArray = oldData.pages[0].todos.filter((todo) => todo.id !== DeletedTodo.id);
-
 
                     return {
                         ...oldData,
@@ -89,8 +86,7 @@ function TodoCard({
                             ...oldData.pages.slice(1)
                         ]
                     }
-                })
-
+                
             })
         }
     })
@@ -125,18 +121,18 @@ function TodoCard({
 }
 
 type ToogleTodoProps = {
-    complete: boolean
+    complete: boolean | null
     id: string
     content: string
 }
 
 function ToggleTodo({ complete, id, content }: ToogleTodoProps) {
 
-     const handleToggle =  api.todo.toggleTodo.useMutation()
+    const handleToggle = api.todo.toggleTodo.useMutation()
 
 
     function handleToggleTodo() {
-        handleToggle.mutate({id})
+        handleToggle.mutate({ id })
     }
 
     return (
@@ -145,7 +141,7 @@ function ToggleTodo({ complete, id, content }: ToogleTodoProps) {
                 id={id}
                 type="checkbox"
                 className="cursor-pointer peer"
-                defaultChecked={complete}
+                defaultChecked={complete !== null ? complete : false}
                 onChange={handleToggleTodo}
             />
             <label

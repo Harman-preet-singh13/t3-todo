@@ -12,8 +12,6 @@ export default function HomePage() {
       <div className="mt-5">
         <ShowTodo />
       </div>
-      
-
     </>
   )
 }
@@ -26,7 +24,7 @@ function ShowTodo() {
 
    return (
     <TodoList
-      todos={todos.data?.pages.flatMap((page)=> page.todos)}
+      todos={todos?.data?.pages.flatMap((page)=> page.todos) || []}
       isError={todos.isError}
       isLoading={todos.isLoading}
       hasMore={todos.hasNextPage}
