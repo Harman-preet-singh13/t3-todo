@@ -77,8 +77,13 @@ async function getInfiniteTweets({
     cursor: { id: string; createdAt: Date } | undefined;
 }) {
 
+    const userId = ctx.session?.user.id;
 
     const data = await ctx.prisma.todo.findMany({
+
+        where: {
+            userId: userId,
+        },
         take: limit + 1,
         cursor: cursor ? { createdAt_id: cursor } : undefined,
         orderBy: [{ createdAt: "desc" }, { id: "desc" }, ],
