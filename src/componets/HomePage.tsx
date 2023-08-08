@@ -2,11 +2,19 @@ import { api } from "~/utils/api";
 import NavBar from "./NavBar";
 import NewTodoForm from "./NewTodoForm";
 import TodoList from "./TodoList";
+import Head from "next/head";
+import { useSession } from "next-auth/react";
 
 
 export default function HomePage() {
+  
+  const session = useSession()
+  
   return (
     <>
+    <Head>
+      <title>T3-Todo {session.data?.user.name}</title>
+    </Head>
       <NavBar />
       <NewTodoForm />
       <div className="mt-5">

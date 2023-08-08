@@ -22,12 +22,15 @@ export default function NewTodoForm() {
     useLayoutEffect(() => {
         updateTextAreaSize(textAreaRef.current)
     },[inputValue])
+
+    if(session.status !== "authenticated") return null
     
     const trpcUtils = api.useContext()
     const createTodo = api.todo.create.useMutation({
         onSuccess: (NewTodo) => {
             setInputValue("");
 
+            if (session.status === "authenticated") return null
             //for adding the new todo without refershing the page..
             
             trpcUtils.todo.infiniteFeed.setInfiniteData({}, (oldData) => {
