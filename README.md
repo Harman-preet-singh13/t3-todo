@@ -1,28 +1,16 @@
-# Create T3 App
+[Live site](https://t3-todo-sandy.vercel.app/)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A T3-Clone built using the [T-stack](https://create.t3.gg/) – Next.js, React.js, trpc, Prisma, and Tailwind CSS.
 
-## What's next? How do I make an app with this?
+A simple and intuitive to-do list application that lets you easily add and manage tasks.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This app streamlines task entry and organization, helping you stay productive and organized.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Here are some screenshots..
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
 
-## Learn More
+![Screenshot_1](https://github.com/Harman-preet-singh13/t3-todo/assets/63332289/66942d5b-35c4-4fa9-9418-a8cdd7ad1e58)
+![Screenshot_2](https://github.com/Harman-preet-singh13/t3-todo/assets/63332289/81d77fb8-4ea0-46b2-99e7-51057973bf10)
+![Screenshot_3](https://github.com/Harman-preet-singh13/t3-todo/assets/63332289/fa27d20c-2bc6-4723-aac8-fb0fda1ee387)
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
